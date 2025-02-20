@@ -2,7 +2,7 @@ import { works } from "./completedWoks"
 import { useState, useRef } from "react"
 const Index = () => {
     let [itemIndex, setItemIndex] = useState(null)
-    let [imageIndex, setImageIndex] = useState(null)
+    let [imageIndex, setImageIndex] = useState(0)
     const element = useRef(null)
     const close = () => {
         element.current.className = "fly-out"
@@ -232,7 +232,9 @@ const Index = () => {
                         </div>
                     </div>
                     <div id="contacts">
-
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </div>
                 </main>
             </div>

@@ -1,4 +1,13 @@
+import { works } from "./completedWoks"
+import { useState, useRef } from "react"
 const Index = () => {
+    let [itemIndex, setItemIndex] = useState(null)
+    let [imageIndex, setImageIndex] = useState(null)
+    const element = useRef(null)
+    const close = () => {
+        element.current.className = "fly-out"
+        console.log(element)
+    }
     return (
         <>
             <div id="index">
@@ -28,7 +37,7 @@ const Index = () => {
                     </div>
                     <div id="shorts">
                         <div id="videoSection">
-                            <video src="/video.mp4" loop autoPlay muted></video>
+                            <img src="/image.jpg" alt="" />
                             <span className="videoText1">
                                 UI/UX Design
                             </span>
@@ -178,15 +187,52 @@ const Index = () => {
                     <div id="listOfWorks">
                         <h1>OUR WORKS</h1>
                         <section>
-                            <div id="workImage">
-                                <img src="/work1.jpg" alt="" />
-                            </div>
-                            <div id="workText">
-                                <h2>Project Title</h2>
-                                <span>
-                                </span>
-                            </div>
+                            {works.map((work, index) => {
+                                return (
+                                    <div id="works" key={index}>
+                                        <section id="imgSection">
+                                            <img src={work.image[0]} alt="" />
+                                        </section>
+                                        <section id="otherSec">
+                                            <div id="texts">
+                                                {work.discription}
+                                            </div>
+                                            <div id="buttonSection">
+                                                <button onClick={() => {
+                                                    setItemIndex(index)
+                                                    element.current.className = "fly-in"    
+                                                }}>View all</button>
+                                            </div>
+                                        </section>
+                                    </div>
+                                )
+                            })}
                         </section>
+                    </div>
+                    <div id="closeParent" ref={element} style={{ display: itemIndex === null ? "none" : "block" }}>
+                        <div id="showAdditionalInfo" >
+                            <div id="close" onClick={close}>X</div>
+                            <div id="bigImage">
+                                {
+                                    itemIndex === null ? "" : <img src={works[itemIndex].image[imageIndex]} alt="" />
+                                }
+                            </div>
+                            <div id="smallerImage">
+                                {
+                                    itemIndex === null ? "" : works[itemIndex].image.map((img, index) => {
+                                        return (
+                                            <img onClick={() => {
+                                                setImageIndex(index)
+                                            }} src={img} alt="" key={index} />
+                                        )
+                                    }
+                                    )
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div id="contacts">
+
                     </div>
                 </main>
             </div>

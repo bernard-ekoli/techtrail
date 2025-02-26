@@ -3,18 +3,29 @@ import { useState, useRef } from "react"
 const Index = () => {
     let [itemIndex, setItemIndex] = useState(null)
     let [imageIndex, setImageIndex] = useState(0)
+    let [changeHeader, setChangeHeader] = useState(false)
     const element = useRef(null)
     const close = () => {
         element.current.className = "fly-out"
-        console.log(element)
+    }
+    const scrollable = (e) => {
+        const top = e.target.scrollTop
+        if (top === 0) {
+            setChangeHeader(false)
+        } else {
+            setChangeHeader(true)
+        }
     }
     return (
-        <>
+        <div id="parent" onScroll={(e) => scrollable(e)}>
             <div id="index">
-                <header className="">
-                    <div>
+                <header>
+                    <div className={changeHeader ? "changeHeader" : ""}>
                         <div id="trailLogo">
                             <img src="/techTrailLogo.png" alt="" />
+                        </div>
+                        <div id="hamBurger">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="black"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" /></svg>
                         </div>
                         <section id="navLinks">
                             <a href="/home">Home</a>
@@ -29,13 +40,13 @@ const Index = () => {
                 <main>
                     <div id="hero">
                         <span>
-                            Strategic branding, marketing & web solutions that turn visibility into profit.
+                            From visibility to profitability – we craft your success!
                         </span>
                         <div>
                             <button>Contact Us</button>
                         </div>
                     </div>
-                    <div id="shorts">
+                    {/*                     <div id="shorts">
                         <div id="videoSection">
                             <img src="/image.jpg" alt="" />
                             <span className="videoText1">
@@ -57,7 +68,7 @@ const Index = () => {
                                 Network Administration
                             </span>
                         </div>
-                    </div>
+                    </div> */}
                     <div id="convince">
                         <section>
                             <div id="sectionImage">
@@ -75,7 +86,7 @@ const Index = () => {
                                 <img src="/webdev.jpg" alt="" />
                             </div>
                             <div id="sectionText">
-                                <h1>Web Development</h1>
+                                <h1>Web Dev</h1>
                                 <span>
                                     We build websites that are fast, responsive, and visually appealing.
                                 </span>
@@ -86,7 +97,7 @@ const Index = () => {
                                 <img src="/bd.jpg" alt="" />
                             </div>
                             <div id="sectionText">
-                                <h1>Brand Development</h1>
+                                <h1>Brand Dev</h1>
                                 <span>
                                     We create brand identities that are unique, memorable, and visually appealing.
                                 </span>
@@ -97,7 +108,7 @@ const Index = () => {
                                 <img src="/appdev.jpg" alt="" />
                             </div>
                             <div id="sectionText">
-                                <h1>App Development</h1>
+                                <h1>App Dev</h1>
                                 <span>
                                     We build mobile applications that are fast, responsive, and visually appealing.
                                 </span>
@@ -119,7 +130,7 @@ const Index = () => {
                                 <img src="/netAdmin.jpg" alt="" />
                             </div>
                             <div id="sectionText">
-                                <h1>Network Administration</h1>
+                                <h1>Network Admin</h1>
                                 <span>
                                     We offer network administration services that are reliable, secure, and scalable.
                                 </span>
@@ -194,13 +205,14 @@ const Index = () => {
                                             <img src={work.image[0]} alt="" />
                                         </section>
                                         <section id="otherSec">
+                                            <h3>PUNTER</h3>
                                             <div id="texts">
                                                 {work.discription}
                                             </div>
                                             <div id="buttonSection">
                                                 <button onClick={() => {
                                                     setItemIndex(index)
-                                                    element.current.className = "fly-in"    
+                                                    element.current.className = "fly-in"
                                                 }}>View all</button>
                                             </div>
                                         </section>
@@ -238,7 +250,7 @@ const Index = () => {
                     </div>
                 </main>
             </div>
-        </>
+        </div>
     )
 }
 

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Press+Start+2P&display=swap');
+
 * {
     box-sizing: border-box;
 }
@@ -8,21 +10,50 @@ html {
     padding: 0;
     font-family: 'Roboto', sans-serif;
     background-color: #f5f5f5;
-    height: 1000000px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#parent {
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: auto;
 }
 
 /* STYLES FOR HEADER */
 header {
-    height: 90px;
+    height: auto;
+    width: auto;
+}
+
+header>div {
+    height: 70px;
     overflow: hidden;
     width: 100%;
     background-color: transparent;
-    padding-top: 15px;
     padding-left: 20px;
     padding-right: 20px;
     font-weight: 900;
     font-size: 20px;
+    display: flex;
+    align-items: center;
 }
+
+.changeHeader {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    width: 95%;
+    z-index: 99999999;
+    background-color: white;
+    transform: translateX(-50%);
+    border-radius: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
 
 .moveHeader {
     position: fixed;
@@ -55,6 +86,10 @@ header>div div {
 header div:nth-child(1) img {
     width: 70%;
     cursor: pointer;
+}
+
+#hamBurger {
+    display: none;
 }
 
 a {
@@ -123,6 +158,9 @@ a {
     font-weight: 900;
     height: 100vh;
     animation: flyin 0.5s ease-in-out forwards;
+    background-image: url("/heroBackground.jpg");
+    color: white;
+    text-shadow: 0 0 10px black, 0 0 20px black, 0 0 30px black;
 }
 
 @keyframes growReduce {
@@ -230,16 +268,13 @@ a {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 20px;
-    padding-left: 70px;
-    padding-right: 70px;
     padding-top: 100px;
     padding-bottom: 20px;
     text-align: center;
-    font-family: 'Times New Roman', ;
-    font-weight: 900;
+    font-family: "Press Start 2P", serif;
+    font-style: normal;
     background-color: #f5f5f5;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 #convince section {
@@ -284,24 +319,24 @@ a {
 
 #sectionText h1 {
     padding: 0px;
-    font-size: 40px;
+    font-size: 25px;
     font-weight: 900;
     width: 100%;
 }
 
 #sectionText span {
-    font-size: 20px;
-    font-weight: 900;
+    font-size: 12px;
     color: #1e90ff;
     width: 100%;
     height: 100%;
+    line-height: 25px;
+    font-style: italic;
 }
 
 /* STYLES FOR ABOUT SECTION */
 #aboutus {
     background-color: #f5faff;
     /* Light blueish white background */
-    padding: 60px 10%;
 }
 
 #aboutus section {
@@ -414,7 +449,7 @@ a {
 
 #works {
     width: 300px;
-    height: 400px;
+    height: 450px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -456,7 +491,6 @@ a {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding-top: 20px;
     padding-left: 10px;
     padding-right: 10px;
     font-family: Arial, Helvetica, sans-serif;
@@ -623,4 +657,68 @@ a {
 #smallerImage img:hover {
     transform: scale(1.1);
     border: 2px solid #ff9800;
+}
+
+/* MOBILE STYLES BELOW */
+
+@media (max-width: 800px) {
+    header>div div {
+        width: 100%;
+    }
+
+    header div:nth-child(1) img {
+        width: 30%;
+    }
+
+    #navLinks {
+        display: none;
+    }
+
+    #hamBurger {
+        display: flex;
+        width: auto;
+        align-items: center;
+        justify-content: right;
+    }
+
+    #hamBurger>svg {
+        cursor: pointer;
+    }
+
+    #contactNav {
+        display: none;
+    }
+
+    #hero {
+        font-size: 30px;
+    }
+
+    #convince section {
+        width: 250px;
+        height: 350px;
+    }
+
+    #sectionText h1 {
+        font-size: 15px;
+    }
+
+    #sectionText span {
+        font-size: 9px;
+        line-height: 15px;
+    }
+}
+
+@media (max-width: 500px) {
+    header div:nth-child(1) img {
+        width: 50%;
+    }
+
+    #convince section {
+        width: 200px;
+    }
+
+    #aboutusText {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
 }
